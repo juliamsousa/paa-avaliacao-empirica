@@ -20,7 +20,7 @@ int main (int argc, char *argv[]) {
   
   Experimentos* experimentos= new Experimentos;
 
-  int *vector = new int;
+  int *vector = new int[quantidade];
 
   gerador(vector, quantidade, situacao);
 
@@ -30,7 +30,7 @@ int main (int argc, char *argv[]) {
       clock_t c2, c1; /* variáveis que contam ciclos do processador */
 
       c1=clock(); /* coloque aqui o código que você quer medir o tempo de execução */
-      mergesort(vector, quantidade);
+      merge_sort(vector, 0, quantidade);
       c2=clock();
 
 	    experimentos->tempo=(c2-c1)*1000/CLOCKS_PER_SEC;/* agora tempo guarda o tempo de execução em milisegundos */
@@ -65,6 +65,10 @@ int main (int argc, char *argv[]) {
 
 	    experimentos->tempo=(c2-c1)*1000/CLOCKS_PER_SEC;/* agora tempo guarda o tempo de execução em milisegundos */
 
+      printVector(vector, quantidade);
+    } break;
+
+    default: {
       printVector(vector, quantidade);
     } break;
   }
