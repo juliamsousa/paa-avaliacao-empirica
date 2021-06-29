@@ -26,7 +26,7 @@ int main (int argc, char *argv[]) {
 
   switch (metodo) {
     case 1: {
-      cout<<"Testando o QuickSort..."<<endl;
+      cout<<"Testando o MergeSort..."<<endl;
       clock_t c2, c1; /* variáveis que contam ciclos do processador */
 
       c1=clock(); /* coloque aqui o código que você quer medir o tempo de execução */

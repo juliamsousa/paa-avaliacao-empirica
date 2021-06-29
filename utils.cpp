@@ -22,7 +22,7 @@ void gerador (int* vector, int n, int situacao) {
     case 3: {
       // preenche o vetor com numeros aleatorios
       for (int i=0; i<n; i++)
-        vector[i] = rand()%100;
+        vector[i] = rand()%n;
     } break;
   }
   return;

@@ -2,54 +2,48 @@
 // C++ implementation of Radix Sort
 
 // A utility function to get maximum value in arr[]
-int getMax(int vector[], int n)
+int getMax(int* vector, int n)
 {
-    int mx = vector[0];
-    for (int i = 1; i < n; i++)
-        if (vector[i] > mx)
-            mx = vector[i];
-    return mx;
+    int max = vector[0];
+    for (int i=1; i<n; i++)
+        if (vector[i] > max)
+            max = vector[i];
+    return max;
 }
  
-// A function to do counting sort of arr[] according to
-// the digit represented by exp.
-void countSort(int arr[], int n, int exp)
-{
-    int output[n]; // output array
-    int i, count[10] = { 0 };
- 
-    // Store count of occurrences in count[]
-    for (i = 0; i < n; i++)
-        count[(arr[i] / exp) % 10]++;
- 
-    // Change count[i] so that count[i] now contains actual
-    //  position of this digit in output[]
-    for (i = 1; i < 10; i++)
-        count[i] += count[i - 1];
- 
-    // Build the output array
-    for (i = n - 1; i >= 0; i--) {
-        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-        count[(arr[i] / exp) % 10]--;
-    }
- 
-    // Copy the output array to arr[], so that arr[] now
-    // contains sorted numbers according to current digit
-    for (i = 0; i < n; i++)
-        arr[i] = output[i];
+// Using counting sort to sort the elements in the basis of significant places
+void countingSort(int* array, int size, int place) {
+  const int max = 10;
+  int output[size];
+  int count[max];
+
+  for (int i = 0; i < max; ++i)
+    count[i] = 0;
+
+  // Calculate count of elements
+  for (int i = 0; i < size; i++)
+    count[(array[i] / place) % 10]++;
+
+  // Calculate cumulative count
+  for (int i = 1; i < max; i++)
+    count[i] += count[i - 1];
+
+  // Place the elements in sorted order
+  for (int i = size - 1; i >= 0; i--) {
+    output[count[(array[i] / place) % 10] - 1] = array[i];
+    count[(array[i] / place) % 10]--;
+  }
+
+  for (int i = 0; i < size; i++)
+    array[i] = output[i];
 }
- 
-// The main function to that sorts arr[] of size n using
-// Radix Sort
-void radixsort(int arr[], int n)
-{
-    // Find the maximum number to know number of digits
-    int m = getMax(arr, n);
- 
-    // Do counting sort for every digit. Note that instead
-    // of passing digit number, exp is passed. exp is 10^i
-    // where i is current digit number
-    for (int exp = 1; m / exp > 0; exp *= 10)
-        countSort(arr, n, exp);
+
+// Main function to implement radix sort
+void radixsort(int* array, int size) {
+  // Get maximum element
+  int max = getMax(array, size);
+
+  // Apply counting sort to sort elements based on place value.
+  for (int place = 1; max / place > 0; place *= 10)
+    countingSort(array, size, place);
 }
- 

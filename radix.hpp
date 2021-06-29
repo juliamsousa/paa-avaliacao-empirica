@@ -2,7 +2,7 @@
 #define RADIX_HPP
 
 int getMax(int arr[], int n);
-void countSort(int arr[], int n, int exp);
-void radixsort(int arr[], int n);
+void countingSort(int* array, int size, int place);
+void radixsort(int* array, int size);
 
 #endif
