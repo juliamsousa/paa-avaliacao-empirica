@@ -32,4 +32,5 @@ void gerador (int* vector, int n, int situacao) {
 void printVector(int arr[], int n) {
   for (int i = 0; i < n; i++)
     cout << arr[i] << " ";
+  cout<<endl;
 }
