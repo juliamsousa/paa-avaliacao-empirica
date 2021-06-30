@@ -4,7 +4,6 @@
 #include <cstdlib>
 
 #include "utils.hpp"
-#include "quicksort.hpp"
 #include "mergesort.hpp"
 #include "radix.hpp"
 #include "insertion.hpp"
@@ -30,7 +29,7 @@ int main (int argc, char *argv[]) {
       clock_t c2, c1; /* variáveis que contam ciclos do processador */
 
       c1=clock(); /* coloque aqui o código que você quer medir o tempo de execução */
-      merge_sort(vector, 0, quantidade);
+      mergeSort(vector, quantidade);
       c2=clock();
 
 	    experimentos->tempo=(c2-c1)*1000/CLOCKS_PER_SEC;/* agora tempo guarda o tempo de execução em milisegundos */
@@ -58,10 +57,8 @@ int main (int argc, char *argv[]) {
       clock_t c2, c1; /* variáveis que contam ciclos do processador */
 
       c1=clock(); /* coloque aqui o código que você quer medir o tempo de execução */
-      c2=clock();
-        
-      // Function Call
       radixsort(vector, quantidade);
+      c2=clock();
 
 	    experimentos->tempo=(c2-c1)*1000/CLOCKS_PER_SEC;/* agora tempo guarda o tempo de execução em milisegundos */
 
@@ -75,8 +72,9 @@ int main (int argc, char *argv[]) {
 
   cout<<"-----------------------------------------------";
   cout<<"\nTempo de execucao...........: "<<experimentos->tempo<<" milissegundos";
-  cout<<"\nNumero de comparacoes.......: "<<experimentos->comparacao;
   cout<<"\n-----------------------------------------------"<<endl;
+   
+  delete [] vector;
 
   return 0;
 }

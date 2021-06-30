@@ -5,7 +5,6 @@
 using namespace std;
 
 void gerador (int* vector, int n, int situacao) {
-  
   switch (situacao) {
     case 1: {
       // preenche o vetor de forma crescente
